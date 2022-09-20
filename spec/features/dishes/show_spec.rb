@@ -18,10 +18,12 @@ RSpec.describe 'dishes show page US_1' do
     
   end
   it 'I see the dishes name and description' do 
-    visit dish_path(@dish1)
+
+    visit "/dishes/#{@dish1.id}"
+    # visit dish_path(@dish1)
 
     expect(page).to have_content("#{@dish1.name}")
-    expect(page).to have_content("#{@dish1.dscription}")
+    expect(page).to have_content("#{@dish1.description}")
     
     expect(page).to_not have_content("#{@dish2.name}")
     expect(page).to_not have_content("#{@dish2.description}")

@@ -11,11 +11,16 @@ RSpec.describe 'dishes show page US_1' do
     @dish3 = Dish.create!(name: "moldy steak", description: "Rare green ribeye", chef_id: @chef2.id )
   
     @ingredient1 = Ingredient.create!(name: "Fuzzy cheddar", calories: 200 )
-    @ingredient2 = Ingredient.create!(name: "3 eyed fish", calories: 200 )
-    @ingredient3 = Ingredient.create!(name: "mystery meat", calories: 200 )
-    @ingredient4 = Ingredient.create!(name: "Fuzzy cheddar", calories: 200 )
+    @ingredient2 = Ingredient.create!(name: "3 eyed fish", calories: 300 )
+    @ingredient3 = Ingredient.create!(name: "mystery meat", calories: 400 )
+    @ingredient4 = Ingredient.create!(name: "stale cereal", calories: 100 )
 
-    
+    DishIngredient.create!(dish_id: @dish1.id, ingredient_id: @ingredient1.id)
+    DishIngredient.create!(dish_id: @dish1.id, ingredient_id: @ingredient4.id)
+    DishIngredient.create!(dish_id: @dish2.id, ingredient_id: @ingredient2.id)
+    DishIngredient.create!(dish_id: @dish2.id, ingredient_id: @ingredient1.id)
+    DishIngredient.create!(dish_id: @dish3.id, ingredient_id: @ingredient3.id)
+    DishIngredient.create!(dish_id: @dish3.id, ingredient_id: @ingredient1.id)
   end
   it 'I see the dishes name and description' do 
 
@@ -31,13 +36,21 @@ RSpec.describe 'dishes show page US_1' do
   end
 
   it 'I see a list of ingredients for that dish' do 
-
+    visit dish_path(@dish1)
+    
+    expect(page).to have_content("#{@ingredient1.name}")
+    expect(page).to have_content("#{@ingredient4.name}")
+    expect(page).to_not have_content("#{@ingredient2.name}")
+    expect(page).to_not have_content("#{@ingredient3.name}")
 
   end
 
   it 'I see a the chefs name' do 
+    visit dish_path(@dish1)
+
 
   end
+
 
 
 

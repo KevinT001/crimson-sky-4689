@@ -1,5 +1,8 @@
 <h1> Dish Show Page </h1>
 
-<h2> Name: <%= @dish.name %> </h2>
-<p> Description: <%= @dish.description %> </p>
+<h2> Name: <%= @dish.name %> </h2> <br>
+<p> Description: <%= @dish.description %> </p><br>
 
+<p>Ingredients: <% @dish.ingredients.each do |ingredient|%>
+                <p>  <%= ingredient.name %> </p>
+                <% end %>

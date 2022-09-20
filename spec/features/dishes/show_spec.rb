@@ -48,6 +48,8 @@ RSpec.describe 'dishes show page US_1' do
   it 'I see a the chefs name' do 
     visit dish_path(@dish1)
 
+    expect(page).to have_content("#{@chef1.name}")
+    expect(page).to_not have_content("#{@chef2.name}")
 
   end
 

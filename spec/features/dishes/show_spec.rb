@@ -53,7 +53,10 @@ RSpec.describe 'dishes show page US_1' do
 
   end
 
+  it 'US_2 on dish show page, total calories is displayed '
 
+    visit dish_path(@dish1)
 
-
+    expect(page).to have_content("Total calories: 300")
+  end 
 end
